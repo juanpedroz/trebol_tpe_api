@@ -3,7 +3,7 @@
 require_once 'app/models/material.model.php';
 require_once 'app/views/producto.api.view.php';
 
-class ProductoApiController {
+class MaterialesApiController {
 
     private $model;
     private $view;

@@ -1,11 +1,9 @@
 <?php
 
-require_once 'conexion_db.php';
-
-class MaterialModel{
+class MaterialModel extends Model{
 
     public function getMateriales(){
-        $pdo = crearConexion();
+        $pdo = $this->crearConexion();
         $sql = "select * from materiales";
         $query = $pdo->prepare($sql);
         $query->execute();
