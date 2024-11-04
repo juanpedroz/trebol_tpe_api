@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-10-2024 a las 04:08:39
+-- Tiempo de generación: 04-11-2024 a las 01:24:18
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -43,6 +43,19 @@ INSERT INTO `materiales` (`id_material`, `material`, `proveedor`) VALUES
 (5, 'chenille', 2),
 (6, 'algarrobo', 3),
 (7, 'Madera balza', 52);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `opiniones`
+--
+
+CREATE TABLE `opiniones` (
+  `id_opinion` int(11) NOT NULL,
+  `calificacion` tinyint(4) NOT NULL,
+  `comentario` varchar(250) NOT NULL,
+  `id_producto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
 
@@ -107,6 +120,13 @@ ALTER TABLE `materiales`
   ADD PRIMARY KEY (`id_material`);
 
 --
+-- Indices de la tabla `opiniones`
+--
+ALTER TABLE `opiniones`
+  ADD PRIMARY KEY (`id_opinion`),
+  ADD KEY `id_producto` (`id_producto`);
+
+--
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
@@ -127,7 +147,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `materiales`
 --
 ALTER TABLE `materiales`
-  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `opiniones`
+--
+ALTER TABLE `opiniones`
+  MODIFY `id_opinion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -144,6 +170,12 @@ ALTER TABLE `usuarios`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `opiniones`
+--
+ALTER TABLE `opiniones`
+  ADD CONSTRAINT `opiniones_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`);
 
 --
 -- Filtros para la tabla `productos`
