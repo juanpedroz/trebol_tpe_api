@@ -23,4 +23,6 @@ class MaterialesApiController {
         return $this->view->response("Hubo un error en la base de datos", 500);
     }
 
+   
+
 }
