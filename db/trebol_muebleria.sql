@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2024 a las 01:24:18
+-- Tiempo de generación: 05-11-2024 a las 22:22:27
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -54,6 +54,7 @@ CREATE TABLE `opiniones` (
   `id_opinion` int(11) NOT NULL,
   `calificacion` tinyint(4) NOT NULL,
   `comentario` varchar(250) NOT NULL,
+  `id_usuarios` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
@@ -124,7 +125,8 @@ ALTER TABLE `materiales`
 --
 ALTER TABLE `opiniones`
   ADD PRIMARY KEY (`id_opinion`),
-  ADD KEY `id_producto` (`id_producto`);
+  ADD KEY `id_producto` (`id_producto`),
+  ADD KEY `id_usuarios` (`id_usuarios`);
 
 --
 -- Indices de la tabla `productos`
@@ -175,7 +177,8 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `opiniones`
 --
 ALTER TABLE `opiniones`
-  ADD CONSTRAINT `opiniones_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`);
+  ADD CONSTRAINT `opiniones_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`),
+  ADD CONSTRAINT `opiniones_ibfk_2` FOREIGN KEY (`id_usuarios`) REFERENCES `usuarios` (`id_usuarios`);
 
 --
 -- Filtros para la tabla `productos`
