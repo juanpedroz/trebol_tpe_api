@@ -31,11 +31,11 @@ class OpinionModel extends Model{
         return $opinion;
     }
     
-    public function crearOpinion($calificacion,  $comentario, $id_producto){
-        $pDO = $this->crearConexion();
-        $sql = 'INSERT INTO opiniones SET calificacion=?, comentario=?, id_producto=? ';
+    public function crearOpinion($calificacion, $comentario, $id_usuarios, $id_producto ){
+        $pdo = $this->crearConexion();
+        $sql = 'INSERT INTO opiniones SET calificacion=?, comentario=?, id_usuarios=?, id_producto=?';
 
         $query = $pdo->prepare($sql);
-        $query->execute([$calificacion, $comentario,  $id_producto]);
+        $query->execute([$calificacion, $comentario, $id_usuarios, $id_producto ]);
     }
 }

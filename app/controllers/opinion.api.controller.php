@@ -1,7 +1,7 @@
 <?php
 
 require_once 'app/models/opinion.api.model.php';
-require_once 'app/views/opinion.api.view.php';
+require_once 'app/views/api.view.php';
 
 class OpinionApiController {
 
@@ -9,6 +9,7 @@ class OpinionApiController {
     private $view;
 
     public function __construct() {
+        $this->data = file_get_contents("php://input");//hay q crear un controller general 
         $this->model = new OpinionModel();
         $this->view = new APIView();
     }
@@ -35,16 +36,18 @@ class OpinionApiController {
     }
 
     public function crearOpinion($req){
-        $calificacion = $req->body->calificacion;
-        $comentario = $req->body->comentario;
-        $id_producto = $req->body->id_producto;
-        if(empty( $calificacion) || empty($comentario) || empty($id_producto)){
+        $nuevaOpinion = json_decode($this->data);
+        $calificacion = $nuevaOpinion->calificacion;
+        $comentario = $nuevaOpinion->comentario;
+        $id_producto = $nuevaOpinion->id_producto;
+        $id_usuarios = $nuevaOpinion->id_usuarios;
+        if(empty( $calificacion) || empty($comentario) || empty($id_producto)){//el id_usuario debería venir del logueo
             return $this->view->response("Faltan completar campos", 401);
         }
 
-        $dato = $this->model->crearOpinion($calificacion,  $comentario, $id_producto);
-
-        return $this->view->response($dato, 200);
+        $this->model->crearOpinion($calificacion, $comentario, $id_usuarios, $id_producto);
+        
+        return $this->view->response("todo piola", 200);
     }
 
 }

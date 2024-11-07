@@ -1,7 +1,7 @@
 <?php
 
 require_once 'app/models/material.model.php';
-require_once 'app/views/producto.api.view.php';
+require_once 'app/views/api.view.php';
 
 class MaterialesApiController {
 
