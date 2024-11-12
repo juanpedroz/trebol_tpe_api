@@ -1,22 +1,16 @@
 <?php
 
 require_once 'app/models/producto.api.model.php';
-require_once 'app/views/api.view.php';
+require_once 'api.controller.php';
 
-class ProductoApiController {
+class ProductoApiController extends ApiController {
     
     private $model;
-    private $view;
 
     public function __construct() {
-        $this->data = file_get_contents("php://input");//hay q crear un controller general
-        $this->view = new ApiView;
+        parent::__construct();//invoco constructor ApiController
         $this->model = new ProductoModel;
     }
-
-//     private function getData() {
-//         return json_decode($this->data);
-//     }
 
     public function getProductos (){
         $productos = $this->model->getProductos();
@@ -35,14 +29,18 @@ class ProductoApiController {
     }
 
     public function crearProducto($req){//hay que controlar q esté logueado
-        $nuevoProducto = json_decode($this->data);
+        $nuevoProducto = $this->getData();//json_decode($this->data);
         $nombre = $nuevoProducto->nombre;
         $precio = $nuevoProducto->precio;
         $descripcion = $nuevoProducto->descripcion;
         $imagen = $nuevoProducto->imagen;
-        $material = $nuevoProducto->id_material;
+        $material = $nuevoProducto->id_material;// hay q controlar q el material exista
         $this->model->cargarProducto($nombre, $precio, $descripcion, $imagen, $material);
         $this->view->response("Producto creado", 200);//este mensaje esta mal enviado porq no hay control de si esta creado o no
+    }
+
+    public function modificarProducto($req){
+        
     }
 
 }

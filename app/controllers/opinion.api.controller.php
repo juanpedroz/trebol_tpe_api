@@ -1,17 +1,15 @@
 <?php
 
 require_once 'app/models/opinion.api.model.php';
-require_once 'app/views/api.view.php';
+require_once 'api.controller.php';
 
-class OpinionApiController {
+class OpinionApiController extends ApiController {
 
     private $model;
-    private $view;
 
     public function __construct() {
-        $this->data = file_get_contents("php://input");//hay q crear un controller general 
+        parent::__construct();//invoco constructor ApiController 
         $this->model = new OpinionModel();
-        $this->view = new APIView();
     }
 
     public function getAll(){
@@ -36,10 +34,10 @@ class OpinionApiController {
     }
 
     public function crearOpinion($req){
-        $nuevaOpinion = json_decode($this->data);
+        $nuevaOpinion = $this->getData();
         $calificacion = $nuevaOpinion->calificacion;
         $comentario = $nuevaOpinion->comentario;
-        $id_producto = $nuevaOpinion->id_producto;
+        $id_producto = $nuevaOpinion->id_producto;//hay q controlar que el producto exista
         $id_usuarios = $nuevaOpinion->id_usuarios;
         if(empty( $calificacion) || empty($comentario) || empty($id_producto)){//el id_usuario debería venir del logueo
             return $this->view->response("Faltan completar campos", 401);
