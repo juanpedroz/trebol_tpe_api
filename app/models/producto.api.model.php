@@ -71,6 +71,9 @@ class ProductoModel extends Model{
         $query = $pdo->prepare($sql);
         $query->execute([$nombre, $precio, $descripcion, $imagen, $material]);
     }
+
+   
+    
 }
 
 ?>

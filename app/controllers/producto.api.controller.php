@@ -2,6 +2,10 @@
 
 require_once 'app/models/producto.api.model.php';
 require_once 'api.controller.php';
+require_once 'app/views/api.view.php';
+
+error_reporting(E_ALL); // Muestra todos los errores
+ini_set('display_errors', 1); // Activa la visualización de errores
 
 class ProductoApiController extends ApiController {
     
@@ -10,6 +14,8 @@ class ProductoApiController extends ApiController {
     public function __construct() {
         parent::__construct();//invoco constructor ApiController
         $this->model = new ProductoModel;
+        $this->view = new APIView;
+
     }
 
     public function getProductos (){
@@ -39,8 +45,20 @@ class ProductoApiController extends ApiController {
         $this->view->response("Producto creado", 200);//este mensaje esta mal enviado porq no hay control de si esta creado o no
     }
 
+    public function eliminarProducto($req){
+        $id = $req->params->id;
+
+        $producto = $this->model->detalleProducto($id);
+        if(!$producto){
+            return $this->view->response("No existe el producto", 404);
+        }
+        else{
+            $this->model->eliminarProducto($id);
+            return $this->view->response("El producto se elimino correctamente", 200);
+        }
+    }
+
     public function modificarProducto($req){
         
     }
-
 }

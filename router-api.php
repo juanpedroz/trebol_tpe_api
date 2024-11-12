@@ -12,9 +12,15 @@ $router = new Router();
 $router->addRoute('productos', 'GET', 'productoApiController', 'getProductos');
 $router->addRoute('producto/:id', 'GET', 'productoApiController', 'getProducto');
 $router->addRoute('producto', 'POST', 'productoApiController', 'crearProducto');
-//$router->addRoute('materiales', 'GET', 'MaterialesApiController', 'getAll');
+$router->addRoute('producto/:id', 'DELETE', 'productoApiController', 'eliminarProducto');
+
+
 $router->addRoute('opiniones', 'GET', 'OpinionApiController', 'getAll');
 $router->addRoute('opinion/:id', 'GET', 'OpinionApiController','getOpinion');
 $router->addRoute('opinion', 'POST', 'OpinionApiController','crearOpinion');
+
+//$router->addRoute('materiales', 'GET', 'MaterialesApiController', 'getAll');
+
+
 // rutea
 $router->route($_GET["resource"], $_SERVER['REQUEST_METHOD']);
