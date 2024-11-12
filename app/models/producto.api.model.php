@@ -11,7 +11,8 @@ class ProductoModel extends Model{
         $sql = "SELECT a.*, b.*
                 FROM productos a
                 INNER JOIN materiales b
-                ON a.id_material = b.id_material";
+                ON a.id_material = b.id_material
+                LIMIT 2 OFFSET 2";
         $query = $pdo->prepare($sql);
         $query->execute();
     
