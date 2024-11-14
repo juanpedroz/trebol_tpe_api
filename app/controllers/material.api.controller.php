@@ -12,7 +12,7 @@ class MaterialesApiController extends ApiController {
         $this->model = new MaterialModel();
     }
 
-    public function getAll(){
+    public function getMateriales(){
         $materiales = $this->model->getMateriales();
 
         if($materiales){
@@ -21,6 +21,18 @@ class MaterialesApiController extends ApiController {
 
         return $this->view->response("Hubo un error en la base de datos", 500);
     }
+
+    public function getMaterial($req){
+        $id = $req->params->id;
+        $material = $this->model->detalleMaterial($id);
+
+        if(!$material){
+            return $this->view->response("No existe el material", 404);
+        }
+
+        return $this->view->response($material, 200);
+    }
+
 
    
 

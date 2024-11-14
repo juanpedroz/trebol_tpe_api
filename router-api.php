@@ -24,8 +24,11 @@ $router->addRoute('opinion/:id', 'DELETE', 'OpinionApiController', 'eliminarOpin
 $router->addRoute('opinion/:id', 'PUT', 'OpinionApiController', 'modificarOpinion');
 
 //materiales
-//$router->addRoute('materiales', 'GET', 'MaterialesApiController', 'getAll');
-
+$router->addRoute('materiales', 'GET', 'MaterialesApiController', 'getMateriales');
+$router->addRoute('material/:id', 'GET', 'MaterialesApiController','getMaterial');
+//$router->addRoute('material', 'POST', 'MaterialesApiController','crearOpinion');
+//$router->addRoute('material/:id', 'DELETE', 'MaterialesApiController', 'eliminarOpinion');
+//$router->addRoute('material/:id', 'PUT', 'MaterialesApiController', 'modificarOpinion');
 
 // rutea
 $router->route($_GET["resource"], $_SERVER['REQUEST_METHOD']);
