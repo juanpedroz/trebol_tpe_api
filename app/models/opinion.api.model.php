@@ -2,6 +2,7 @@
 
 require_once ('model.php');
 
+
 class OpinionModel extends Model{
     //conexion a la db
 
@@ -30,6 +31,7 @@ class OpinionModel extends Model{
 
         return $opinion;
     }
+
     
     public function crearOpinion($calificacion, $comentario, $id_usuarios, $id_producto ){
         $pdo = $this->crearConexion();
@@ -37,5 +39,21 @@ class OpinionModel extends Model{
 
         $query = $pdo->prepare($sql);
         $query->execute([$calificacion, $comentario, $id_usuarios, $id_producto ]);
+    }
+
+    public function eliminarOpinion($id){
+        $pdo = $this->crearConexion();
+        $sql = "DELETE FROM opiniones WHERE id_opinion =?";
+        $query = $pdo->prepare($sql);
+        $query->execute([$id]);
+    }
+
+    public function modificarOpinion($calificacion,$comentario, $id_producto, $id_usuarios, $id){
+        $pdo = $this->crearConexion();
+        
+        $sql = 'INSERT INTO opiniones SET calificacion=?, comentario=?, id_producto=?, id_usuarios=?, WHERE id=? ';
+
+        $query = $pdo->prepare($sql);
+        $query->execute([$calificacion,$comentario, $id_producto, $id_usuarios, $id]);
     }
 }

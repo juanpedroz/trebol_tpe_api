@@ -3,9 +3,10 @@
 require_once 'app/models/producto.api.model.php';
 require_once 'api.controller.php';
 require_once 'app/views/api.view.php';
+require_once 'app/models/material.model.php';
 
-error_reporting(E_ALL); // Muestra todos los errores
-ini_set('display_errors', 1); // Activa la visualización de errores
+//error_reporting(E_ALL); // Muestra todos los errores
+//ini_set('display_errors', 1); // Activa la visualización de errores
 
 class ProductoApiController extends ApiController {
     
@@ -15,7 +16,7 @@ class ProductoApiController extends ApiController {
         parent::__construct();//invoco constructor ApiController
         $this->model = new ProductoModel;
         $this->view = new APIView;
-
+        $this->modelMaterial = new MaterialModel;
     }
 
     public function getProductos (){
@@ -41,6 +42,12 @@ class ProductoApiController extends ApiController {
         $descripcion = $nuevoProducto->descripcion;
         $imagen = $nuevoProducto->imagen;
         $material = $nuevoProducto->id_material;// hay q controlar q el material exista
+        
+        $verificarMaterial = $this->modelMaterial->detalleMaterial($id);
+        if(!$verificarMaterial){
+            return $this->view->response("No existe el material", 404);
+        }
+
         $this->model->cargarProducto($nombre, $precio, $descripcion, $imagen, $material);
         $this->view->response("Producto creado", 200);//este mensaje esta mal enviado porq no hay control de si esta creado o no
     }
@@ -59,6 +66,27 @@ class ProductoApiController extends ApiController {
     }
 
     public function modificarProducto($req){
-        
+        $id = $req->params->id;
+
+        $producto = $this->model->detalleProducto($id);
+
+        if(!$producto){
+            return $this->view->response("No existe el producto", 404);
+        }
+
+        $nuevoProducto = $this->getData();//json_decode($this->data);
+        $nombre = $nuevoProducto->nombre;
+        $precio = $nuevoProducto->precio;
+        $descripcion = $nuevoProducto->descripcion;
+        $imagen = $nuevoProducto->imagen;
+        $material = $nuevoProducto->id_material;
+
+        if(empty($nombre) || empty($precio) || empty($descripcion) || empty($imagen) || empty($material)){
+            return $this->view->response("Faltan completar campos", 401);
+        }
+
+        $productoEditado = $this->model->guardarProducto($nombre,$precio, $descripcion, $imagen, $material, $id);
+
+        return $this->view->response($productoEditado, 200);
     }
 }

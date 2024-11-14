@@ -72,6 +72,19 @@ class ProductoModel extends Model{
         $query->execute([$nombre, $precio, $descripcion, $imagen, $material]);
     }
 
+    public function guardarProducto($nombre,$precio, $descripcion, $imagen, $material, $id){
+        $pdo = $this->crearConexion();
+
+        $sql = 'UPDATE productos SET nombre=?, precio=?, descripcion=?, imagen=?, id_material=?  WHERE id = ?';
+
+        $query = $pdo->prepare($sql);
+        try {
+            $query->execute([$nombre,$precio, $descripcion, $imagen, $material, $id]);
+            return $id;
+        } catch (\Throwable $th) {
+            return null;
+        }
+    }
    
     
 }
