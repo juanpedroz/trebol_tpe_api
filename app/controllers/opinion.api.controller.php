@@ -1,18 +1,22 @@
 <?php
 
 require_once 'app/models/opinion.api.model.php';
+require_once 'app/controllers/usuario.api.controller.php';
 require_once 'api.controller.php';
 
 class OpinionApiController extends ApiController {
 
     private $model;
+    private $user;
 
     public function __construct() {
         parent::__construct();//invoco constructor ApiController 
         $this->model = new OpinionModel();
+        $this->user = new UsuarioApiController();
     }
 
     public function getAll(){
+
         $opiniones = $this->model->getOpiniones();
 
         if($opiniones){
@@ -34,6 +38,7 @@ class OpinionApiController extends ApiController {
     }
 
     public function crearOpinion($req){
+        $this->user->autenticar();
         $nuevaOpinion = $this->getData();
         $calificacion = $nuevaOpinion->calificacion;
         $comentario = $nuevaOpinion->comentario;
@@ -45,7 +50,7 @@ class OpinionApiController extends ApiController {
 
         $this->model->crearOpinion($calificacion, $comentario, $id_usuarios, $id_producto);
         
-        return $this->view->response("todo piola", 200);
+        return $this->view->response("Opinion creada", 201);
     }
 
 }

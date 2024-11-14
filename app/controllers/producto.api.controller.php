@@ -2,6 +2,7 @@
 
 require_once 'app/models/producto.api.model.php';
 require_once 'api.controller.php';
+require_once 'app/controllers/usuario.api.controller.php';
 require_once 'app/views/api.view.php';
 
 error_reporting(E_ALL); // Muestra todos los errores
@@ -10,11 +11,12 @@ ini_set('display_errors', 1); // Activa la visualización de errores
 class ProductoApiController extends ApiController {
     
     private $model;
+    private $user;
 
     public function __construct() {
         parent::__construct();//invoco constructor ApiController
         $this->model = new ProductoModel;
-        $this->view = new APIView;
+        $this->user = new UsuarioApiController;
 
     }
 
@@ -35,6 +37,7 @@ class ProductoApiController extends ApiController {
     }
 
     public function crearProducto($req){//hay que controlar q esté logueado
+        $this->user->autenticar();
         $nuevoProducto = $this->getData();//json_decode($this->data);
         $nombre = $nuevoProducto->nombre;
         $precio = $nuevoProducto->precio;
@@ -42,7 +45,7 @@ class ProductoApiController extends ApiController {
         $imagen = $nuevoProducto->imagen;
         $material = $nuevoProducto->id_material;// hay q controlar q el material exista
         $this->model->cargarProducto($nombre, $precio, $descripcion, $imagen, $material);
-        $this->view->response("Producto creado", 200);//este mensaje esta mal enviado porq no hay control de si esta creado o no
+        $this->view->response("Producto creado", 201);//este mensaje esta mal enviado porq no hay control de si esta creado o no
     }
 
     public function eliminarProducto($req){
