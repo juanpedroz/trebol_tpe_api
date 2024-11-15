@@ -29,9 +29,6 @@ $router->addRoute('usuario/:nombre_usuario', 'GET', 'UsuarioApiController', 'get
 
 $router->addRoute('token', 'GET', 'TokenApiController', 'getToken');
 
-
-//$router->addRoute('materiales', 'GET', 'MaterialesApiController', 'getAll');
-
 //materiales
 $router->addRoute('materiales', 'GET', 'MaterialesApiController', 'getMateriales');
 $router->addRoute('material/:id', 'GET', 'MaterialesApiController','getMaterial');

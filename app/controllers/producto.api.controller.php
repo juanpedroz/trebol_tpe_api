@@ -3,7 +3,6 @@
 require_once 'app/models/producto.api.model.php';
 require_once 'api.controller.php';
 require_once 'app/controllers/usuario.api.controller.php';
-require_once 'app/views/api.view.php';
 require_once 'app/models/material.model.php';
 
 //error_reporting(E_ALL); // Muestra todos los errores
@@ -18,8 +17,6 @@ class ProductoApiController extends ApiController {
         parent::__construct();//invoco constructor ApiController
         $this->model = new ProductoModel;
         $this->user = new UsuarioApiController;
-
-        $this->view = new APIView;
         $this->modelMaterial = new MaterialModel;
     }
 

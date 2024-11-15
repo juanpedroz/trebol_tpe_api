@@ -13,7 +13,6 @@ class OpinionApiController extends ApiController {
         parent::__construct();//invoco constructor ApiController 
         $this->model = new OpinionModel();
         $this->user = new UsuarioApiController();
-        $this->view = new APIView;
         $this->modelProducto = new ProductoModel();
 
     }
