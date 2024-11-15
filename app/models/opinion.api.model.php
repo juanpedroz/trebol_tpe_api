@@ -48,12 +48,12 @@ class OpinionModel extends Model{
         $query->execute([$id]);
     }
 
-    public function modificarOpinion($calificacion,$comentario, $id_producto, $id_usuarios, $id){
+    public function modificarOpinion($calificacion,$comentario, $id){
         $pdo = $this->crearConexion();
         
-        $sql = 'INSERT INTO opiniones SET calificacion=?, comentario=?, id_producto=?, id_usuarios=?, WHERE id=? ';
+        $sql = 'UPDATE opiniones SET calificacion=?, comentario=? WHERE id_opinion=? ';
 
         $query = $pdo->prepare($sql);
-        $query->execute([$calificacion,$comentario, $id_producto, $id_usuarios, $id]);
+        $query->execute([$calificacion,$comentario, $id]);
     }
 }

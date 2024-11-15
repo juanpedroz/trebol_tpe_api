@@ -14,7 +14,7 @@ class TokenApiController extends ApiController{
 
     public function getToken (){
         $basic = $this->getBasic();
-        $time = base64_encode(time() + 250);
+        $time = base64_encode(time() + 1000);
         $token ="$basic.$time";
         // $token = array(
         //     'time' => time() + 1000,

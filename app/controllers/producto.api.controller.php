@@ -102,8 +102,8 @@ class ProductoApiController extends ApiController {
             return $this->view->response("Faltan completar campos", 401);
         }
 
-        $productoEditado = $this->model->guardarProducto($nombre,$precio, $descripcion, $imagen, $material, $id);
-
+        $this->model->guardarProducto($nombre,$precio, $descripcion, $imagen, $material, $id);
+        $productoEditado = $this->model->detalleProducto($id);
         return $this->view->response($productoEditado, 200);
     }
 }

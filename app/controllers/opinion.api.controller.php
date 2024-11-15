@@ -83,15 +83,14 @@ class OpinionApiController extends ApiController {
             return $this->view->response("No existe la opinion", 404);
         }
 
-        $nuevaOpinion = $this->getData();
-        $calificacion = $nuevaOpinion->calificacion;
-        $comentario = $nuevaOpinion->comentario;
-        $id_producto = $nuevaOpinion->id_producto;
-        $id_usuarios = $nuevaOpinion->id_usuarios;
-        if(empty( $calificacion) || empty($comentario) || empty($id_producto)){//el id_usuario debería venir del logueo
+        $calificacion = $req->body->calificacion;
+        $comentario = $req->body->comentario;
+        if(empty( $calificacion) || empty($comentario) ){//el id_usuario debería venir del logueo
             return $this->view->response("Faltan completar campos", 401);
         }
-        $opinionEditada = $this->model->modificarOpinion($calificacion,$comentario, $id_producto, $id_usuarios, $id);
+        $this->model->modificarOpinion($calificacion,$comentario, $id);
+
+        $opinionEditada = $this->model->getOpinion($id);
 
         return $this->view->response($opinionEditada, 200);
     }
