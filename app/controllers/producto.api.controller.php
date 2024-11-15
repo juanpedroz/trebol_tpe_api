@@ -49,7 +49,7 @@ class ProductoApiController extends ApiController {
         $precio = $nuevoProducto->precio;
         $descripcion = $nuevoProducto->descripcion;
         $imagen = $nuevoProducto->imagen;
-        $material = $nuevoProducto->id_material;// hay q controlar q el material exista
+        $material = $nuevoProducto->id_material;
         
         $verificarMaterial = $this->modelMaterial->detalleMaterial($material);
         if(!$verificarMaterial){
@@ -57,7 +57,7 @@ class ProductoApiController extends ApiController {
         }
 
         $this->model->cargarProducto($nombre, $precio, $descripcion, $imagen, $material);
-        $this->view->response("Producto creado", 201);//este mensaje esta mal enviado porq no hay control de si esta creado o no
+        $this->view->response("Producto creado", 201);
     }
 
     public function eliminarProducto($req){

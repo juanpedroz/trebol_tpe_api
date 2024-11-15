@@ -93,7 +93,7 @@ class OpinionApiController extends ApiController {
         }
         $opinionEditada = $this->model->modificarOpinion($calificacion,$comentario, $id_producto, $id_usuarios, $id);
 
-        return $this->view->response($OpinionEditada, 200);
+        return $this->view->response($opinionEditada, 200);
     }
     
 }
