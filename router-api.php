@@ -17,7 +17,7 @@ $router->addRoute('producto/:id', 'GET', 'productoApiController', 'getProducto')
 $router->addRoute('producto', 'POST', 'productoApiController', 'crearProducto');
 $router->addRoute('producto/:id', 'DELETE', 'productoApiController', 'eliminarProducto');
 $router->addRoute('producto/:id', 'PUT', 'productoApiController', 'modificarProducto');
-$router->addRoute('productos/:campo', 'GET', 'productoApiController', 'getProductosOrdenados');//funciona
+$router->addRoute('productosOrd', 'GET', 'productoApiController', 'getProductosOrdenados');//funciona
 
 //opiniones
 $router->addRoute('opiniones', 'GET', 'OpinionApiController', 'getAll');

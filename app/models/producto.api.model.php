@@ -32,14 +32,14 @@ class ProductoModel extends Model{
 
     }
 
-    public function getProductosOrdenados($campo){
+    public function getProductosOrdenados($campo,$sentido){
         $pdo = $this->crearConexion();
 
         $sql = "SELECT a.*, b.*
                 FROM productos a
                 INNER JOIN materiales b
                 ON a.id_material = b.id_material
-                ORDER BY $campo ";
+                ORDER BY $campo $sentido";
         $query = $pdo->prepare($sql);
         $query->execute();
     
