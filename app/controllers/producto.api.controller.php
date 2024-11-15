@@ -25,6 +25,12 @@ class ProductoApiController extends ApiController {
         return $this->view->response($productos,200);
     }
 
+    public function getProductosOrdenados ($req){
+        $campo = $req->params->campo;
+        $productos = $this->model->getProductosOrdenados($campo);
+        return $this->view->response($productos,200);
+    }
+
     public function getProducto($req){
         $id = $req->params->id;
         $producto = $this->model->detalleProducto($id);

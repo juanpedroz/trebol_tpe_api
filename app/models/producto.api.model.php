@@ -6,13 +6,12 @@ class ProductoModel extends Model{
     //conexion a la db
 
     public function getProductos(){
-        $pdo = $this->crearConexion();
+        $pdo = $this->crearConexion();//LIMIT 2 OFFSET 2"
 
         $sql = "SELECT a.*, b.*
                 FROM productos a
                 INNER JOIN materiales b
-                ON a.id_material = b.id_material
-                LIMIT 2 OFFSET 2";
+                ON a.id_material = b.id_material";
         $query = $pdo->prepare($sql);
         $query->execute();
     
@@ -31,6 +30,22 @@ class ProductoModel extends Model{
 
         return $productos;
 
+    }
+
+    public function getProductosOrdenados($campo){
+        $pdo = $this->crearConexion();
+
+        $sql = "SELECT a.*, b.*
+                FROM productos a
+                INNER JOIN materiales b
+                ON a.id_material = b.id_material
+                ORDER BY $campo ";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+    
+        $productos = $query->fetchAll(PDO::FETCH_OBJ);
+    
+        return $productos;
     }
 
     public function detalleProducto($id){

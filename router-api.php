@@ -17,6 +17,7 @@ $router->addRoute('producto/:id', 'GET', 'productoApiController', 'getProducto')
 $router->addRoute('producto', 'POST', 'productoApiController', 'crearProducto');
 $router->addRoute('producto/:id', 'DELETE', 'productoApiController', 'eliminarProducto');
 $router->addRoute('producto/:id', 'PUT', 'productoApiController', 'modificarProducto');
+$router->addRoute('productos/:campo', 'GET', 'productoApiController', 'getProductosOrdenados');//funciona
 
 //opiniones
 $router->addRoute('opiniones', 'GET', 'OpinionApiController', 'getAll');
@@ -32,7 +33,7 @@ $router->addRoute('token', 'GET', 'TokenApiController', 'getToken');
 //materiales
 $router->addRoute('materiales', 'GET', 'MaterialesApiController', 'getMateriales');
 $router->addRoute('material/:id', 'GET', 'MaterialesApiController','getMaterial');
-//$router->addRoute('material', 'POST', 'MaterialesApiController','crearMateril');
+//$router->addRoute('material', 'POST', 'MaterialesApiController','crearMaterial');
 //$router->addRoute('material/:id', 'DELETE', 'MaterialesApiController', 'eliminarMaterial');
 //$router->addRoute('material/:id', 'PUT', 'MaterialesApiController', 'modificarMaterial');
 
