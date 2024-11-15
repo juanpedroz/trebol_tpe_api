@@ -55,6 +55,7 @@ class ProductoApiController extends ApiController {
     }
 
     public function eliminarProducto($req){
+        $this->user->autenticar();
         $id = $req->params->id;
 
         $producto = $this->model->detalleProducto($id);
@@ -68,6 +69,7 @@ class ProductoApiController extends ApiController {
     }
 
     public function modificarProducto($req){
+        $this->user->autenticar();
         $id = $req->params->id;
 
         $producto = $this->model->detalleProducto($id);

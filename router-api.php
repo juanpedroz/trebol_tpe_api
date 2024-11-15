@@ -32,9 +32,9 @@ $router->addRoute('token', 'GET', 'TokenApiController', 'getToken');
 //materiales
 $router->addRoute('materiales', 'GET', 'MaterialesApiController', 'getMateriales');
 $router->addRoute('material/:id', 'GET', 'MaterialesApiController','getMaterial');
-//$router->addRoute('material', 'POST', 'MaterialesApiController','crearOpinion');
-//$router->addRoute('material/:id', 'DELETE', 'MaterialesApiController', 'eliminarOpinion');
-//$router->addRoute('material/:id', 'PUT', 'MaterialesApiController', 'modificarOpinion');
+//$router->addRoute('material', 'POST', 'MaterialesApiController','crearMateril');
+//$router->addRoute('material/:id', 'DELETE', 'MaterialesApiController', 'eliminarMaterial');
+//$router->addRoute('material/:id', 'PUT', 'MaterialesApiController', 'modificarMaterial');
 
 // rutea
 $router->route($_GET["resource"], $_SERVER['REQUEST_METHOD']);

@@ -15,6 +15,7 @@ class UsuarioApiController extends ApiController{
     }
 
     public function getUsuario ($req){
+        $this->user->autenticar();
         $nombre_usuario = $req->params->nombre_usuario;
         $usuario = $this->model->getUsuario($nombre_usuario);
         if(!isset($usuario)){

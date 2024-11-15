@@ -61,6 +61,7 @@ class OpinionApiController extends ApiController {
     }
 
     public function eliminarOpinion($req){
+        $this->user->autenticar();
         $id = $req->params->id;
 
         $opinion = $this->model->getOpinion($id);
@@ -74,6 +75,7 @@ class OpinionApiController extends ApiController {
     }
 
     public function modificarOpinion($req){
+        $this->user->autenticar();
         $id = $req->params->id;
 
         $opinion = $this->model->getOpinion($id);
