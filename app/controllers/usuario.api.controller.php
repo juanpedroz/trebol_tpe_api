@@ -26,7 +26,7 @@ class UsuarioApiController extends ApiController{
 
     public function autenticar() {
         if (!$this->auth_basic()) {
-            $this->view->response('Acceso denegado', 400);
+            $this->view->response('Acceso denegado', 401);
             die();
         }
 
@@ -36,14 +36,19 @@ class UsuarioApiController extends ApiController{
         try {
         
             $basic = $this->getHeaderToken();
-            if (!isset($basic) || !$basic[0] || !$basic[1]) //RESOLVER ERROR CUANDO EL TOKEN ESTÁ MAL COPIADO !!!!!!!!
-                return $this->view->response('token defectuoso o vacio', 400);
-            $user = $basic[0];
-            $pass = $basic[1];
-            // print_r($user);
-            // print_r($pass);
-            // $existeUsuario = $this->validaUsuarioPass($user, $pass);
-            // var_dump($existeUsuario); 
+            $token = explode(':',$basic[0]);
+            // print_r($basic[1]);
+            // print_r("0000000000");
+            // print_r(time());
+            // // die;
+            if (!isset($basic) || !$basic[0] || !$basic[1]) {//RESOLVER ERROR CUANDO EL TOKEN ESTÁ MAL COPIADO !!!!!!!!
+                $this->view->response('token defectuoso o vacio', 401);
+                die();
+            }
+            $user = $token[0];
+            $pass = $token[1];
+            if ($basic[1] < time())
+                return $this->view->response('token vencido', 401);
             return $this->validaUsuarioPass($user, $pass);                
         } catch (\Throwable $th) {
             return false;
@@ -63,10 +68,17 @@ class UsuarioApiController extends ApiController{
         $headers = apache_request_headers();       
 
         $token = $headers['Token'];//asigno le valor del header Token en la variable $token
-
-        $basic = base64_decode($token);
-
+        $basic = explode('.',$token);
+        // $basic = base64_decode($token);
+        
+        $token = base64_decode($basic[0]);
+        $time = base64_decode($basic[1]);
+        // print_r($token);
+        // print_r($time);
+        return [$token,$time];
+        die;          
         $basic = explode(':',$basic);
+        
         return $basic; //retorno user:pass en formato basic
     } 
 

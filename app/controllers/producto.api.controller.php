@@ -45,7 +45,7 @@ class ProductoApiController extends ApiController {
         $imagen = $nuevoProducto->imagen;
         $material = $nuevoProducto->id_material;// hay q controlar q el material exista
         
-        $verificarMaterial = $this->modelMaterial->detalleMaterial($id);
+        $verificarMaterial = $this->modelMaterial->detalleMaterial($material);
         if(!$verificarMaterial){
             return $this->view->response("No existe el material", 404);
         }
