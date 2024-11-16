@@ -7,19 +7,24 @@ class ProductoModel extends Model{
 
     public function getProductos($page){
         $pdo = $this->crearConexion();//LIMIT 2 OFFSET 2"
+        $elementos = $this->getCount("productos");
         $limit = 4;
+        $elementos = get_object_vars($elementos); //transformo en array
+        $cantpage = intval(($elementos["count(*)"])/$limit)+1;//obtengo cantidad de paginas
+        
         $offset = ($page-1)*$limit;
-        $sql = "SELECT a.*, b.*
-                FROM productos a
-                INNER JOIN materiales b
-                ON a.id_material = b.id_material
-                LIMIT $limit OFFSET $offset";
-        $query = $pdo->prepare($sql);
-        $query->execute();
-    
-        $productos = $query->fetchAll(PDO::FETCH_OBJ);
-    
-        return $productos;
+        if ($page<=$cantpage){
+            $sql = "SELECT a.*, b.*
+                    FROM productos a
+                    INNER JOIN materiales b
+                    ON a.id_material = b.id_material
+                    LIMIT $limit OFFSET $offset";
+            $query = $pdo->prepare($sql);
+            $query->execute();
+            $productos = $query->fetchAll(PDO::FETCH_OBJ);
+            return $productos;
+        }
+        return null;
     }
 
     public function getProductosCategoria($id_material){

@@ -18,11 +18,9 @@ class MaterialesApiController extends ApiController {
         $page = $req->params->page;
         $materiales = $this->model->getMateriales($page);
 
-        if($materiales){
-            return $this->view->response($materiales, 200);
-        }
-
-        return $this->view->response("Hubo un error en la base de datos", 500);
+        if(!isset($materiales))
+            return $this->view->response("Página no existe",404);
+        return $this->view->response($materiales,200);
     }
 
     public function getMaterialesOrdenados ($req){

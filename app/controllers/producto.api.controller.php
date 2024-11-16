@@ -23,6 +23,8 @@ class ProductoApiController extends ApiController {
     public function getProductos ($req){
         $page = $req->params->page;
         $productos = $this->model->getProductos($page);
+        if(!isset($productos))
+            return $this->view->response("Página no existe",404);
         return $this->view->response($productos,200);
     }
 

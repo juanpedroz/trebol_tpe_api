@@ -7,17 +7,22 @@ class OpinionModel extends Model{
     //conexion a la db
 
     public function getOpiniones($page){
-        $pdo = $this->crearConexion();
+        $pdo = $this->crearConexion();//LIMIT 2 OFFSET 2"
+        $elementos = $this->getCount("opiniones");
         $limit = 4;
+        $elementos = get_object_vars($elementos); //transformo en array
+        $cantpage = intval(($elementos["count(*)"])/$limit)+1;//obtengo cantidad de paginas
+        
         $offset = ($page-1)*$limit;
-        $sql = "SELECT * FROM opiniones
-                LIMIT $limit OFFSET $offset";
-        $query = $pdo->prepare($sql);
-        $query->execute();
-    
-        $opiniones = $query->fetchAll(PDO::FETCH_OBJ);
-    
-        return $opiniones;
+        if ($page<=$cantpage){
+            $sql = "SELECT * FROM opiniones
+                    LIMIT $limit OFFSET $offset";
+            $query = $pdo->prepare($sql);
+            $query->execute();
+            $opiniones = $query->fetchAll(PDO::FETCH_OBJ);        
+            return $opiniones;
+        }
+        return null;
     }
 
     public function getOpinionesOrdenadas($campo,$sentido){

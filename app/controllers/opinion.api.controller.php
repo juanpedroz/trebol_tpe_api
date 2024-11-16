@@ -20,12 +20,10 @@ class OpinionApiController extends ApiController {
     public function getAll($req){
         $page = $req->params->page;
         $opiniones = $this->model->getOpiniones($page);
-
-        if($opiniones){
-            return $this->view->response($opiniones, 200);
-        }
-
-        return $this->view->response("Hubo un error en la base de datos", 500);
+        if(!isset($opiniones))
+            return $this->view->response("Página no existe",404);
+        
+        return $this->view->response($opiniones, 200);
     }
 
     public function getOpinionesOrdenadas($req){

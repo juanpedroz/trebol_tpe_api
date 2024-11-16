@@ -25,6 +25,17 @@ class Model {
             return $pdo;
         }
 
+        function getCount($tabla){
+            $pdo = $this->crearConexion();
+            $sql = "SELECT count(*) FROM $tabla" ;
+            $query = $pdo->prepare($sql);
+            $query->execute();
+
+            $elementos = $query->fetch(PDO::FETCH_OBJ);
+
+        return ($elementos);
+        }
+
         private function _deploy() {
             $query = $this->db->query('SHOW TABLES');
             $tables = $query->fetchAll();
