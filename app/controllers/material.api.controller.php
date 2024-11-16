@@ -14,14 +14,23 @@ class MaterialesApiController extends ApiController {
         $this->user = new UsuarioApiController();
     }
 
-    public function getMateriales(){
-        $materiales = $this->model->getMateriales();
+    public function getMateriales($req){
+        $page = $req->params->page;
+        $materiales = $this->model->getMateriales($page);
 
         if($materiales){
             return $this->view->response($materiales, 200);
         }
 
         return $this->view->response("Hubo un error en la base de datos", 500);
+    }
+
+    public function getMaterialesOrdenados ($req){
+        $campo = $req->query->campo;
+        $sentido = $req->query->sentido;
+        
+        $materiales = $this->model->getMaterialesOrdenados($campo,$sentido);
+        return $this->view->response($materiales,200);
     }
 
     public function getMaterial($req){
@@ -68,7 +77,7 @@ class MaterialesApiController extends ApiController {
    }
 
    public function modificarMaterial($req){
-   // $this->user->autenticar();
+        $this->user->autenticar();
         $id = $req->params->id;
 
         $opinion = $this->model->detalleMaterial($id);
@@ -85,7 +94,7 @@ class MaterialesApiController extends ApiController {
         }
         $materialEditado = $this->model->modificarMaterial($material, $proveedor, $id);
 
-        return $this->view->response($materialEditado, 200);
+        return $this->view->response("Material editado", 200);
    }
    
 

@@ -17,15 +17,23 @@ class OpinionApiController extends ApiController {
 
     }
 
-    public function getAll(){
-
-        $opiniones = $this->model->getOpiniones();
+    public function getAll($req){
+        $page = $req->params->page;
+        $opiniones = $this->model->getOpiniones($page);
 
         if($opiniones){
             return $this->view->response($opiniones, 200);
         }
 
         return $this->view->response("Hubo un error en la base de datos", 500);
+    }
+
+    public function getOpinionesOrdenadas($req){
+        $campo = $req->query->campo;
+        $sentido = $req->query->sentido;
+        
+        $opiniones = $this->model->getOpinionesOrdenadas($campo,$sentido);
+        return $this->view->response($opiniones,200);
     }
 
     public function getOpinion($req){

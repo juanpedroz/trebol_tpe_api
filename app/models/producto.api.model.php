@@ -5,13 +5,15 @@ require_once ('model.php');
 class ProductoModel extends Model{
     //conexion a la db
 
-    public function getProductos(){
+    public function getProductos($page){
         $pdo = $this->crearConexion();//LIMIT 2 OFFSET 2"
-
+        $limit = 4;
+        $offset = ($page-1)*$limit;
         $sql = "SELECT a.*, b.*
                 FROM productos a
                 INNER JOIN materiales b
-                ON a.id_material = b.id_material";
+                ON a.id_material = b.id_material
+                LIMIT $limit OFFSET $offset";
         $query = $pdo->prepare($sql);
         $query->execute();
     

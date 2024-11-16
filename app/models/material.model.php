@@ -2,9 +2,23 @@
 
 class MaterialModel extends Model{
 
-    public function getMateriales(){
+    public function getMateriales($page){
         $pdo = $this->crearConexion();
-        $sql = "select * from materiales";
+        $limit = 4;
+        $offset = ($page-1)*$limit;
+        $sql = "SELECT * FROM materiales
+                LIMIT $limit OFFSET $offset";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+    
+        $materiales = $query->fetchAll(PDO::FETCH_OBJ);
+    
+        return $materiales;
+    }
+
+    public function getMaterialesOrdenados ($campo,$sentido){
+        $pdo = $this->crearConexion();
+        $sql = "SELECT * FROM materiales ORDER BY $campo $sentido";
         $query = $pdo->prepare($sql);
         $query->execute();
     

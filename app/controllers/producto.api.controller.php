@@ -20,8 +20,9 @@ class ProductoApiController extends ApiController {
         $this->modelMaterial = new MaterialModel;
     }
 
-    public function getProductos (){
-        $productos = $this->model->getProductos();
+    public function getProductos ($req){
+        $page = $req->params->page;
+        $productos = $this->model->getProductos($page);
         return $this->view->response($productos,200);
     }
 

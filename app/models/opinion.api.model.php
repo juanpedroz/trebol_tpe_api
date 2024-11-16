@@ -6,13 +6,24 @@ require_once ('model.php');
 class OpinionModel extends Model{
     //conexion a la db
 
-    public function getOpiniones(){
+    public function getOpiniones($page){
+        $pdo = $this->crearConexion();
+        $limit = 4;
+        $offset = ($page-1)*$limit;
+        $sql = "SELECT * FROM opiniones
+                LIMIT $limit OFFSET $offset";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+    
+        $opiniones = $query->fetchAll(PDO::FETCH_OBJ);
+    
+        return $opiniones;
+    }
+
+    public function getOpinionesOrdenadas($campo,$sentido){
         $pdo = $this->crearConexion();
 
-        $sql = "SELECT a.*, b.*
-                FROM opiniones a
-                INNER JOIN productos b
-                ON a.id_producto = b.id_producto";
+        $sql = "SELECT * FROM opiniones ORDER BY $campo $sentido";
         $query = $pdo->prepare($sql);
         $query->execute();
     
