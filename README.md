@@ -8,11 +8,10 @@ Para generar un token de autorización básica dentro del URL “Generar token�
 
 ![Generar Token](https://github.com/juanpedroz/capturasMD_tpe_api_web2/blob/main/generarToken.png)
 
-![Aplicacón Token](https://github.com/juanpedroz/capturasMD_tpe_api_web2/blob/main/aplicacionToken.png)
-
-
 ## Validación usuario
 Para validar el usuario con el token obtenido me ubico en el URL a utilizar (solo para métodos POST y PUT) y en la pestaña superior “Headers” en el header llamado “Token” en el campo para rellenar pego el token obtenido y posteriormente enviar la petición.
+
+![Aplicacón Token](https://github.com/juanpedroz/capturasMD_tpe_api_web2/blob/main/aplicacionToken.png)
 
 ## Orden
 Los ítem de las tablas se ordenan de manera ascendente por campo y por orden ascendente o descendente, a través de parámetro GET. 
