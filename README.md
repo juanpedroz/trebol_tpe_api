@@ -7,6 +7,8 @@ Esta documentación tiene como objetivo explicar paso a paso la implementación 
 Para generar un token de autorización básica dentro del URL “Generar token” se debe cargar el nombre de usuario y la contraseña en la pestaña de “Authorization” seleccionando en “Auth Type” la opción “Basic Auth” y en cada input rellenar respectivamente y enviar la petición. Una vez obtenida la respuesta en el body response copiar la cadena de caracteres de “token” (sin las comillas), para posteriormente ser usado en las peticiones POST, PUT Y DELETE. Este "Token" obtenido debe ser ingresado en el input llamado "Token" dentro de la pestaña "Headers".
 ![Generar Token](https://github.com/juanpedroz/capturasMD_tpe_api_web2/blob/main/generarToken.png)
 
+![Aplicacón Token](https://github.com/juanpedroz/capturasMD_tpe_api_web2/blob/main/aplicacionToken.png)
+
 
 ## Validación usuario
 Para validar el usuario con el token obtenido me ubico en el URL a utilizar (solo para métodos POST y PUT) y en la pestaña superior “Headers” en el header llamado “Token” en el campo para rellenar pego el token obtenido y posteriormente enviar la petición.
