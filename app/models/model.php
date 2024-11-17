@@ -36,6 +36,19 @@ class Model {
         return ($elementos);
         }
 
+        function existeCampo($nombreTabla, $campo){
+            $pdo = $this->crearConexion();
+            $sql = "SELECT * FROM Information_Schema.COLUMNS WHERE TABLE_NAME = ?";
+            $query = $pdo->prepare($sql);
+            $query->execute([$nombreTabla]);
+            $columnas = $query->fetchall(PDO::FETCH_OBJ);
+            foreach($columnas as $columna){
+                if ($columna->COLUMN_NAME == $campo)
+                    return true;
+            } 
+            return false; 
+        }
+
         private function _deploy() {
             $query = $this->db->query('SHOW TABLES');
             $tables = $query->fetchAll();

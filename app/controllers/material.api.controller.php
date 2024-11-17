@@ -26,8 +26,9 @@ class MaterialesApiController extends ApiController {
     public function getMaterialesOrdenados ($req){
         $campo = $req->query->campo;
         $sentido = $req->query->sentido;
-        
         $materiales = $this->model->getMaterialesOrdenados($campo,$sentido);
+        if (!isset($materiales))
+            return $this->view->response("Error de Parametro",404);
         return $this->view->response($materiales,200);
     }
 

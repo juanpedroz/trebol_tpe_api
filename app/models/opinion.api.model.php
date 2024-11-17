@@ -27,7 +27,10 @@ class OpinionModel extends Model{
 
     public function getOpinionesOrdenadas($campo,$sentido){
         $pdo = $this->crearConexion();
-
+        if (!$this->existeCampo("opiniones", $campo))
+            return null;
+        if (($sentido != "asc") && ($sentido != "desc"))
+            return null;
         $sql = "SELECT * FROM opiniones ORDER BY $campo $sentido";
         $query = $pdo->prepare($sql);
         $query->execute();

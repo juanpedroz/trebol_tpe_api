@@ -29,8 +29,10 @@ class OpinionApiController extends ApiController {
     public function getOpinionesOrdenadas($req){
         $campo = $req->query->campo;
         $sentido = $req->query->sentido;
-        
+    
         $opiniones = $this->model->getOpinionesOrdenadas($campo,$sentido);
+        if (!isset($opiniones))
+            return $this->view->response("Error de Parametro",404);
         return $this->view->response($opiniones,200);
     }
 

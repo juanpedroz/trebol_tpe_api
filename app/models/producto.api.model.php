@@ -41,7 +41,10 @@ class ProductoModel extends Model{
 
     public function getProductosOrdenados($campo,$sentido){
         $pdo = $this->crearConexion();
-
+        if (!$this->existeCampo("productos", $campo))
+            return null;
+        if (($sentido != "asc") && ($sentido != "desc"))
+            return null;
         $sql = "SELECT a.*, b.*
                 FROM productos a
                 INNER JOIN materiales b

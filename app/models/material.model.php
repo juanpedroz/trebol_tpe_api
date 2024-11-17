@@ -22,12 +22,16 @@ class MaterialModel extends Model{
 
     public function getMaterialesOrdenados ($campo,$sentido){
         $pdo = $this->crearConexion();
+        if (!$this->existeCampo("materiales", $campo))
+            return null;
+        if (($sentido != "asc") && ($sentido != "desc"))
+            return null;
         $sql = "SELECT * FROM materiales ORDER BY $campo $sentido";
         $query = $pdo->prepare($sql);
         $query->execute();
-    
+             
         $materiales = $query->fetchAll(PDO::FETCH_OBJ);
-    
+        
         return $materiales;
     }
 

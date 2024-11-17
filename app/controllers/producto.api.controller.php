@@ -31,13 +31,10 @@ class ProductoApiController extends ApiController {
     public function getProductosOrdenados ($req){
         $campo = $req->query->campo;
         $sentido = $req->query->sentido;
-        // // // $query = $_SERVER["QUERY_STRING"];
-        // // $headers = apache_request_headers();
-        // print_r($campo);
-        // print_r($sentido);
-        
-        // die;
         $productos = $this->model->getProductosOrdenados($campo,$sentido);
+        if (!isset($productos))
+            return $this->view->response("Error de Parametro",404);
+
         return $this->view->response($productos,200);
     }
 
