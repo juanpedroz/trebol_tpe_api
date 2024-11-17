@@ -3,16 +3,16 @@
 Trebol api es una api rest diseñada para que los usuarios puedan interactuar con la página de trébol muebleria, pudiendo calificar y comentar sobre los productos allí ofrecidos, para que otros usuarios o sitios web puedan leerlos y obtener información que ayude en la decisión de adquirir un nuevo producto.
 Esta documentación tiene como objetivo explicar paso a paso la implementación de la api, facilitando así su uso y entendimiento.
 
-##Token
+## Token
 Para generar un token de autorización básica dentro del URL “Generar token” se debe cargar el nombre de usuario y la contraseña en la pestaña de “Authorization” seleccionando en “Auth Type” la opción “Basic Auth” y en cada input rellenar respectivamente y enviar la petición. Una vez obtenida la respuesta en el body response copiar la cadena de caracteres de “token” (sin las comillas).
 
-##Validación usuario
+## Validación usuario
 Para validar el usuario con el token obtenido me ubico en el URL a utilizar (solo para métodos POST y PUT) y en la pestaña superior “Headers” en el header llamado “Token” en el campo para rellenar pego el token obtenido y posteriormente enviar la petición.
 
-##Orden
+## Orden
 Los ítem de las tablas se ordenan de manera ascendente por campo y por orden ascendente o descendente, a través de parámetro GET. 
 
-##Paginación
+## Paginación
 Para la paginación se recibe por parámetro GET el número de página a la que se quiere acceder, estando como constante definida la cantidad de 4 elementos por página.
 
 
@@ -150,7 +150,7 @@ Modifica una opinion con el id especificado, obteniendo los datos del body, con 
 	- 404: si la opinion con el id no existe
 	- 401: si faltan completar campos
 
-##Materiales
+## Materiales
 ### - GET
 - Para obtener todos los materiales:
 Obtiene toda la colección de materiales disponibles en la base de datos, de forma desordenada y paginada.
