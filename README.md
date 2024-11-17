@@ -103,12 +103,12 @@ Obtiene toda la colección deopiniones disponibles en la base de datos, de forma
 		-  200: si la petición fue realizada con éxito
 		-  404: si la pagina no existe
 
-- Para obtener solo un producto
-Obtiene el producto con el id especificado en el endpoint.
-	- **endpoint**: producto/:id
+- Para obtener solo una opinion
+Obtiene la opinion con el id especificado en el endpoint.
+	- **endpoint**: opinion/:id
 	- **códigos de respuesta:**
 		- 200: si la peticion fue realizada correctamente
-		- 404: si el producto con el id no existe
+		- 404: si la opinion con el id no existe
 
 - Para obtener opiniones ordenadas:
 Se muestran todas las opiniones ordenadas de forma ascendente o descendente y según el campo de la tabla especificado.Primero se necesita especificar el campo de la tabla (?campo=nombre_campo) y luego el sentido(&sentido=asc) (**desc** para orden descendente y **asc** para ascendente).
