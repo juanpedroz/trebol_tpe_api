@@ -191,11 +191,11 @@ Crea un material obteniendo los datos del body con el formato:
     "proveedor": 3
 }
 ```
-	- **endpoint:** material
-	- **códigos de respuesta:**
-		- 201: si el material fue creado existosamente
-		- 404: si el material especificado no existe
-		- 401: si faltan completar campos
+- **endpoint:** material
+- **códigos de respuesta:**
+	- 201: si el material fue creado existosamente
+	- 404: si el material especificado no existe
+	- 401: si faltan completar campos
 
 
 ### - DELETE
