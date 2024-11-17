@@ -61,6 +61,8 @@ Crea un producto obteniendo los datos del body con el formato:
 	"id_material" : 0
 }
 ```
+![POST producto 200](https://github.com/juanpedroz/capturasMD_tpe_api_web2/blob/main/POSTproducto200.jpg)
+
 - **endpoint:** producto
 - **códigos de respuesta:**
 	- 201: si el producto fue creado existosamente
@@ -205,7 +207,8 @@ Elimina un material con el id especificado.
 	- **códigos de respuesta:** 
 		- 200: si el material fue eliminado correctamente
 		- 404: si el material con el id no existe
-		- 500: si el material tiene productos asociados
+		  [DELETE material 500](https://github.com/juanpedroz/capturasMD_tpe_api_web2/blob/main/DELETEmaterial500.jpg)
+    
 
 ### - PUT
 - Para modificar un material.
