@@ -207,7 +207,7 @@ Elimina un material con el id especificado.
 	- **códigos de respuesta:** 
 		- 200: si el material fue eliminado correctamente
 		- 404: si el material con el id no existe
-		  [DELETE material 500](https://github.com/juanpedroz/capturasMD_tpe_api_web2/blob/main/DELETEmaterial500.jpg)
+		  ![DELETE material 500](https://github.com/juanpedroz/capturasMD_tpe_api_web2/blob/main/DELETEmaterial500.jpg)
     
 
 ### - PUT
