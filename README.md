@@ -58,11 +58,11 @@ Crea un producto obteniendo los datos del body con el formato:
 	"id_material" : 0
 }
 ```
-	- **endpoint:** producto
-	- **códigos de respuesta:**
-		- 201: si el producto fue creado existosamente
-		- 404: si el material especificado no existe
-		- 401: si faltan completar campos
+- **endpoint:** producto
+- **códigos de respuesta:**
+	- 201: si el producto fue creado existosamente
+	- 404: si el material especificado no existe
+	- 401: si faltan completar campos
 
 ### - DELETE
 - Para eliminar un producto
