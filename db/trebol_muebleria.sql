@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-11-2024 a las 22:14:42
+-- Tiempo de generación: 17-11-2024 a las 23:39:28
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -41,7 +41,7 @@ INSERT INTO `materiales` (`id_material`, `material`, `proveedor`) VALUES
 (1, 'pino', 1),
 (2, 'melamina', 1),
 (5, 'chenille', 2),
-(6, 'algarrobo', 3),
+(6, 'algarrobo duro', 3),
 (7, 'Madera balza', 52);
 
 -- --------------------------------------------------------
@@ -64,7 +64,7 @@ CREATE TABLE `opiniones` (
 
 INSERT INTO `opiniones` (`id_opinion`, `calificacion`, `comentario`, `id_usuarios`, `id_producto`) VALUES
 (1, 3, 'lindo', 5, 10),
-(2, 3, 'lindo', 5, 10),
+(2, 9, 'muy muy lindo', 5, 10),
 (3, 3, 'lindo', 5, 10),
 (4, 3, 'medio pelo', 5, 9),
 (9, 3, 'medio pelo', 5, 3),
