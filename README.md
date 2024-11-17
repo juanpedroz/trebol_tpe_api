@@ -28,7 +28,7 @@ Obtiene toda la colección de productos disponibles en la base de datos, de form
 	-  **endpoint:** productos/:page
 	- **códigos de respuesta:**
 		-  200: si la petición fue realizada con éxito
-    			! [GET productos 200] (https://github.com/juanpedroz/capturasMD_tpe_api_web2/blob/main/GETproductos200.jpg?raw=true)
+    			![GET productos 200](https://github.com/juanpedroz/capturasMD_tpe_api_web2/blob/main/GETproductos200.jpg)
 		-  404:  si la pagina no existe
 
 
