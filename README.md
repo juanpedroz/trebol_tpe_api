@@ -4,7 +4,10 @@ Trebol api es una api rest diseñada para que los usuarios puedan interactuar co
 Esta documentación tiene como objetivo explicar paso a paso la implementación de la api, facilitando así su uso y entendimiento.
 
 ## Token
-Para generar un token de autorización básica dentro del URL “Generar token” se debe cargar el nombre de usuario y la contraseña en la pestaña de “Authorization” seleccionando en “Auth Type” la opción “Basic Auth” y en cada input rellenar respectivamente y enviar la petición. Una vez obtenida la respuesta en el body response copiar la cadena de caracteres de “token” (sin las comillas).
+Para generar un token de autorización básica dentro del URL “Generar token” se debe cargar el nombre de usuario y la contraseña en la pestaña de “Authorization” seleccionando en “Auth Type” la opción “Basic Auth” y en cada input rellenar respectivamente y enviar la petición. Una vez obtenida la respuesta en el body response copiar la cadena de caracteres de “token” (sin las comillas), para posteriormente ser usado en las peticiones POST, PUT Y DELETE. Este "Token" obtenido debe ser ingresado en el input llamado "Token" dentro de la pestaña "Headers".
+![texto_alternativo](https://drive.google.com/file/d/1Ej-oH3UbObMxmugluJwCDboU931AywmV/view?usp=drive_link)
+
+
 
 ## Validación usuario
 Para validar el usuario con el token obtenido me ubico en el URL a utilizar (solo para métodos POST y PUT) y en la pestaña superior “Headers” en el header llamado “Token” en el campo para rellenar pego el token obtenido y posteriormente enviar la petición.
