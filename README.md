@@ -128,10 +128,10 @@ Crea una opinion obteniendo los datos del body con el formato:
     "comentario": "aaaa"
 }
 ```
-	- **endpoint:** producto
-	- **códigos de respuesta:**
-		- 201: si la opinion fue creada existosamente
-		- 401: si faltan completar campos
+- **endpoint:** producto
+- **códigos de respuesta:**
+	- 201: si la opinion fue creada existosamente
+	- 401: si faltan completar campos
 
 ### - DELETE
 - Para eliminar una opinion
