@@ -4,14 +4,13 @@ require_once 'app/models/material.model.php';
 require_once 'api.controller.php';
 require_once 'app/controllers/usuario.api.controller.php';
 
-class MaterialesApiController extends ApiController {
+class MaterialesApiController extends UsuarioApiController {
 
     private $model;
 
     public function __construct() {
         parent::__construct();//invoco constructor ApiController        
         $this->model = new MaterialModel();
-        $this->user = new UsuarioApiController();
     }
 
     public function getMateriales($req){
@@ -43,7 +42,7 @@ class MaterialesApiController extends ApiController {
     }
 
     public function crearMaterial(){
-        $this->user->autenticar();
+        $this->autenticar();
         $nuevoMaterial = $this->getData();//json_decode($this->data);
         $material = $nuevoMaterial->material;
         $proveedor = $nuevoMaterial->proveedor;
@@ -57,7 +56,7 @@ class MaterialesApiController extends ApiController {
     }
 
    public function eliminarMaterial($req){
-        $this->user->autenticar();
+        $this->autenticar();
         $id = $req->params->id;
 
         $material = $this->model->detalleMaterial($id);
@@ -76,7 +75,7 @@ class MaterialesApiController extends ApiController {
    }
 
    public function modificarMaterial($req){
-        $this->user->autenticar();
+        $this->autenticar();
         $id = $req->params->id;
 
         $opinion = $this->model->detalleMaterial($id);

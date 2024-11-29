@@ -4,15 +4,14 @@ require_once 'app/models/opinion.api.model.php';
 require_once 'app/controllers/usuario.api.controller.php';
 require_once 'api.controller.php';
 
-class OpinionApiController extends ApiController {
+class OpinionApiController extends UsuarioApiController{
 
     private $model;
-    private $user;
+    private $modelProducto;
 
     public function __construct() {
         parent::__construct();//invoco constructor ApiController 
         $this->model = new OpinionModel();
-        $this->user = new UsuarioApiController();
         $this->modelProducto = new ProductoModel();
 
     }
@@ -47,14 +46,14 @@ class OpinionApiController extends ApiController {
         return $this->view->response($opinion, 200);
     }
 
-    public function crearOpinion($req){
-        $this->user->autenticar();
+    public function crearOpinion(){
+        $this->autenticar();
         $nuevaOpinion = $this->getData();
         $calificacion = $nuevaOpinion->calificacion;
         $comentario = $nuevaOpinion->comentario;
         $id_usuarios = $nuevaOpinion->id_usuarios;
         $id_producto = $nuevaOpinion->id_producto;//hay q controlar que el producto exista
-        $verificarProducto = $this->modelProducto->detalleProducto($id);
+        $verificarProducto = $this->modelProducto->detalleProducto($id_producto);
         if(!$verificarProducto ){
             return $this->view->response("No existe el producto", 404);
         }
@@ -69,7 +68,7 @@ class OpinionApiController extends ApiController {
     }
 
     public function eliminarOpinion($req){
-        $this->user->autenticar();
+        $this->autenticar();
         $id = $req->params->id;
 
         $opinion = $this->model->getOpinion($id);
@@ -83,7 +82,7 @@ class OpinionApiController extends ApiController {
     }
 
     public function modificarOpinion($req){
-        $this->user->autenticar();
+        $this->autenticar();
         $id = $req->params->id;
 
         $opinion = $this->model->getOpinion($id);

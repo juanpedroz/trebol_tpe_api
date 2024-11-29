@@ -8,15 +8,14 @@ require_once 'app/models/material.model.php';
 //error_reporting(E_ALL); // Muestra todos los errores
 //ini_set('display_errors', 1); // Activa la visualización de errores
 
-class ProductoApiController extends ApiController {
+class ProductoApiController extends UsuarioApiController {
     
     private $model;
-    private $user;
+    private $modelMaterial;
 
     public function __construct() {
         parent::__construct();//invoco constructor ApiController
         $this->model = new ProductoModel;
-        $this->user = new UsuarioApiController;
         $this->modelMaterial = new MaterialModel;
     }
 
@@ -49,8 +48,8 @@ class ProductoApiController extends ApiController {
         return $this->view->response($producto, 200);
     }
 
-    public function crearProducto($req){//hay que controlar q esté logueado
-        $this->user->autenticar();
+    public function crearProducto(){//hay que controlar q esté logueado
+        $this->autenticar();
         $nuevoProducto = $this->getData();//json_decode($this->data);
         $nombre = $nuevoProducto->nombre;
         $precio = $nuevoProducto->precio;
@@ -68,7 +67,7 @@ class ProductoApiController extends ApiController {
     }
 
     public function eliminarProducto($req){
-        $this->user->autenticar();
+        $this->autenticar();
         $id = $req->params->id;
 
         $producto = $this->model->detalleProducto($id);
@@ -82,7 +81,7 @@ class ProductoApiController extends ApiController {
     }
 
     public function modificarProducto($req){
-        $this->user->autenticar();
+        $this->autenticar();
         $id = $req->params->id;
 
         $producto = $this->model->detalleProducto($id);

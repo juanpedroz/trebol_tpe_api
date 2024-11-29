@@ -62,7 +62,7 @@ class ProductoModel extends Model{
         
         $pdo = $this->crearConexion();
 
-        $sql = "select * from productos  where id_producto = ?";
+        $sql = "SELECT * FROM productos WHERE id_producto = ?";
         $query = $pdo->prepare($sql);
         $query->execute([$id]);
     

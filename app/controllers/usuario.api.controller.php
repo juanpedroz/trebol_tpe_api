@@ -5,19 +5,19 @@ require_once 'api.controller.php';
 
 class UsuarioApiController extends ApiController{
 
-    private $model;
+    protected $modelUsuario;
 
     public function __construct() {
 
         parent::__construct();//invoco constructor ApiController
-        $this->model = new UsuariolModel;
+        $this->modelUsuario = new UsuariolModel;
         // el view está en la clase principal
     }
 
     public function getUsuario ($req){
-        $this->user->autenticar();
+        $this->autenticar();
         $nombre_usuario = $req->params->nombre_usuario;
-        $usuario = $this->model->getUsuario($nombre_usuario);
+        $usuario = $this->modelUsuario->getUsuario($nombre_usuario);
         if(!isset($usuario)){
             return $this->view->response("No existe un producto con el nombre de usuario = $nombre_usuario", 404);
         }
@@ -57,7 +57,7 @@ class UsuarioApiController extends ApiController{
     } 
 
     public function validaUsuarioPass ($usuario, $password) {
-        $user = $this->model->getUsuario($usuario);
+        $user = $this->modelUsuario->getUsuario($usuario);
         //Si el usuario existe y las contraseñas coinciden
         if($user && password_verify($password,($user->password))){
             return true;
